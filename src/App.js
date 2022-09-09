@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import SignInSide from "./pages/SignInSide";
+import CustomerSignUp from "./pages/CustomerSignUp";
+import AdminSignUp from "./pages/AdminSignUp";
+import ClerkSignUp from "./pages/ClerkSignUp";
+import DevideCustomer from "./pages/DevideCustomer";
+import Home from "./pages/Home";
+import TravelAgentSignUp from "./pages/TravelAgentSignUp";
+import Dashboard from "./pages/Dashboard";
+import Booking from "./pages/Booking";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<SignInSide />} />
+        <Route path="/customerSignUp" element={<CustomerSignUp />} />
+        <Route path="/adminSignup" element={<AdminSignUp />} />
+        <Route path="/clerkSignup" element={<ClerkSignUp />} />
+        <Route path="/devideCustomer" element={<DevideCustomer />} />
+        <Route path="/travelAgentSignUp" element={<TravelAgentSignUp />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/booking" element={<Booking />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
