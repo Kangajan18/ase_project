@@ -36,7 +36,10 @@ function getStepContent(step) {
     case 0:
       return <BookingForm />;
     case 1:
-      return <PaymentForm />;
+      if (JSON.parse(localStorage.getItem("data")).card == true)
+        return <PaymentForm />;
+      else return <Review />;
+
     case 2:
       return <Review />;
     default:
@@ -97,9 +100,7 @@ export default function Booking() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
+                  We have emailed your booking confirmation
                 </Typography>
               </React.Fragment>
             ) : (

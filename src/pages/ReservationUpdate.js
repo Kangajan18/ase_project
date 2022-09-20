@@ -6,15 +6,17 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import UpdateIcon from "@mui/icons-material/Update";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Swal from "sweetalert2";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import Swal from "sweetalert2";
 function Copyright(props) {
   return (
     <Typography
@@ -35,7 +37,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function CustomerSignUp() {
+export default function ReservationUpdate() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -51,9 +53,12 @@ export default function CustomerSignUp() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [checkIn, setCheckIn] = useState(new Date());
 
   const onSubmitHandle = () => {
     console.log(firstName, lastName, nic, phone, email, password);
+
+    Swal.fire("UPDATED!", "Succesfully Updated!", "success");
 
     axios
       .post("http://localhost:8080/api/user/save", {
@@ -68,15 +73,8 @@ export default function CustomerSignUp() {
       })
       .then(function (response) {
         console.log(response);
-        Swal.fire("Welcome!", "You are Connect with us now!", "success");
       })
       .catch(function (error) {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Something went wrong!",
-          footer: '<a href="">Why do I have this issue?</a>',
-        });
         console.log(error);
       });
   };
@@ -93,11 +91,11 @@ export default function CustomerSignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
+          <Avatar sx={{ m: 1, bgcolor: "#1DB954" }}>
+            <UpdateIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Customer Sign up
+            Reservation Update
           </Typography>
           <Box
             component="form"
@@ -109,11 +107,11 @@ export default function CustomerSignUp() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="firstName"
+                  name="customerName"
                   required
                   fullWidth
-                  id="firstName"
-                  label="First Name"
+                  id="customerName"
+                  label="Customer Name"
                   autoFocus
                   onChange={(e) => {
                     setfirstName(e.target.value);
@@ -124,9 +122,9 @@ export default function CustomerSignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
+                  id="roomNumber"
+                  label="Room Number"
+                  name="roomNumber"
                   autoComplete="family-name"
                   onChange={(e) => {
                     setlastName(e.target.value);
@@ -134,26 +132,22 @@ export default function CustomerSignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="nic"
-                  label="Nic Number"
-                  name="nic"
-                  autoComplete="nic"
-                  onChange={(e) => {
-                    setNic(e.target.value);
-                  }}
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <p style={{ marginRight: 30 }}>CheckIn</p>
+                  <DatePicker
+                    selected={checkIn}
+                    onChange={(date: Date) => setCheckIn(date)}
+                  />
+                </div>
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  id="daysCount"
+                  label="Days Count"
+                  name="daysCount"
+                  autoComplete="daysCount"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -163,10 +157,10 @@ export default function CustomerSignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="phoneNumber"
-                  label="Phone Number"
-                  name="phoneNumber"
-                  autoComplete="phoneNumber"
+                  id="status"
+                  label="Status"
+                  name="status"
+                  autoComplete="status"
                   onChange={(e) => {
                     setPhone(e.target.value);
                   }}
@@ -176,11 +170,9 @@ export default function CustomerSignUp() {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
+                  name="amount"
+                  label="Amount"
+                  id="amount"
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}
@@ -193,16 +185,10 @@ export default function CustomerSignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={onSubmitHandle}
+              sx={{ mt: 1, bgcolor: "#1DB954" }}
             >
-              Sign Up
+              Update
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 5 }} />

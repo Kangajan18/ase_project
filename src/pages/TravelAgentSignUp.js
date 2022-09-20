@@ -53,7 +53,6 @@ export default function TravelAgentSignUp() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -104,6 +103,16 @@ export default function TravelAgentSignUp() {
                 <TextField
                   required
                   fullWidth
+                  id="companyName"
+                  label="Company Name"
+                  name="companyName"
+                  autoComplete="companyName"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -111,14 +120,7 @@ export default function TravelAgentSignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
+              
             </Grid>
             <Button
               type="submit"

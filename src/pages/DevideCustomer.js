@@ -2,7 +2,9 @@ import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import GroupsIcon from "@mui/icons-material/Groups";
 import "./DevideCustomer.css";
+import { useState } from "react";
 function DevideCustomer() {
+  const [customerType, setcustomerType] = useState("");
   return (
     <div
       style={{
@@ -41,6 +43,10 @@ function DevideCustomer() {
               alignItems: "center",
               border: "none",
             }}
+            onClick={() => {
+              setcustomerType("SimpleCustomer");
+              localStorage.setItem("customerType", "Simple Customer");
+            }}
           >
             <PersonIcon style={{ width: 100, height: 100, marginTop: 65 }} />
             <h3
@@ -75,6 +81,10 @@ function DevideCustomer() {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+            }}
+            onClick={() => {
+              setcustomerType("Traval Agent");
+              localStorage.setItem("customerType", "Traval Agent");
             }}
           >
             <GroupsIcon style={{ width: 100, height: 100, marginTop: 65 }} />

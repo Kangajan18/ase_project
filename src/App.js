@@ -9,6 +9,10 @@ import Home from "./pages/Home";
 import TravelAgentSignUp from "./pages/TravelAgentSignUp";
 import Dashboard from "./pages/Dashboard";
 import Booking from "./pages/Booking";
+import AdminDashBoard from "./pages/AdminDashBoard";
+import ClarkDashBoard from "./pages/ClarkDashBoard";
+import ReservationUpdate from "./pages/ReservationUpdate";
+import MyReservation from "./pages/MyReservation";
 
 function App() {
   return (
@@ -23,6 +27,10 @@ function App() {
         <Route path="/travelAgentSignUp" element={<TravelAgentSignUp />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/booking" element={<Booking />} />
+        <Route path="/adminDashBoard" element={<AdminDashBoard />} />
+        <Route path="/clarkDashBoard" element={<ClarkDashBoard />} />
+        <Route path="/reservationupdate" element={<ReservationUpdate />} />
+        <Route path="/myReservation" element={<MyReservation />} />
       </Routes>
     </BrowserRouter>
   );

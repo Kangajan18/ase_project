@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
+import Swal from "sweetalert2";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -18,6 +19,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import PersonIcon from "@mui/icons-material/Person";
 import { useState } from "react";
+import { Button } from "@mui/material";
+
 function Copyright(props) {
   return (
     <Typography
@@ -84,12 +87,22 @@ const Drawer = styled(MuiDrawer, {
 
 const mdTheme = createTheme();
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 function DashboardContent() {
   const [isSingleRoom, setIsSingleRoom] = useState(true);
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
+
+  const onPrint = (name) => {
+    console.log(name);
+    setroomType(name);
+    localStorage.setItem("items", JSON.stringify(roomType));
+  };
+
+  const [roomType, setroomType] = useState("");
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -124,7 +137,15 @@ function DashboardContent() {
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={0} color="secondary">
-                <PersonIcon />
+                <p
+                  style={{ display: "flex" }}
+                  onClick={() => {
+                    Swal.fire("Logout!", "Are you want to logout?", "question");
+                  }}
+                >
+                  <PersonIcon />
+                  <h4 style={{ marginLeft: 5 }}>{user.firstName}</h4>
+                </p>
               </Badge>
             </IconButton>
           </Toolbar>
@@ -167,7 +188,7 @@ function DashboardContent() {
                     setIsSingleRoom(true);
                   }}
                 >
-                  Single Room
+                  Rooms
                 </button>
               </div>
 
@@ -187,6 +208,26 @@ function DashboardContent() {
                 >
                   Villa
                 </button>
+              </div>
+              <div style={{ alignItems: "center", marginLeft: 35 }}>
+                <a
+                  href="/myReservation"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <button
+                    style={{
+                      width: 120,
+                      height: 50,
+                      borderRadius: 10,
+                      color: "white",
+                      backgroundColor: "#0277BD",
+                      border: "none",
+                      marginTop: 50,
+                    }}
+                  >
+                    My Reseravtion
+                  </button>
+                </a>
               </div>
             </div>
             <IconButton onClick={toggleDrawer}>
@@ -284,6 +325,9 @@ function DashboardContent() {
                               fontSize: 18,
                               transform: "translateX(320%) translateY(380%)",
                             }}
+                            onClick={() => {
+                              onPrint("king Room");
+                            }}
                           >
                             Book
                           </button>
@@ -343,6 +387,9 @@ function DashboardContent() {
                               color: "white",
                               fontSize: 18,
                               transform: "translateX(290%) translateY(380%)",
+                            }}
+                            onClick={() => {
+                              onPrint("Double Room");
                             }}
                           >
                             Book
@@ -404,9 +451,34 @@ function DashboardContent() {
                               fontSize: 18,
                               transform: "translateX(310%) translateY(380%)",
                             }}
+                            onClick={() => {
+                              onPrint("Triple Room");
+                            }}
                           >
                             Book
                           </button>
+                        </div>
+
+                        <div>
+                          <a href="/booking">
+                            <button
+                              style={{
+                                height: 40,
+                                width: 90,
+                                borderRadius: 12,
+                                backgroundColor: "yellow",
+                                border: "none",
+                                color: "black",
+                                fontSize: 18,
+                                transform: "translateX(750%) translateY(80%)",
+                              }}
+                              onClick={() => {
+                                onPrint("Triple Room");
+                              }}
+                            >
+                              Next
+                            </button>
+                          </a>
                         </div>
                       </div>
                     ) : (
@@ -442,7 +514,7 @@ function DashboardContent() {
                               marginLeft: 11,
                             }}
                           >
-                            Nature Villa
+                            Natural Villa
                           </h2>
                           <h4
                             style={{

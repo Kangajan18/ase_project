@@ -1,7 +1,6 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
-import CameraIcon from "@mui/icons-material/PhotoCamera";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -11,7 +10,7 @@ import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./Home.css";
-import LuggageIcon from '@mui/icons-material/Luggage';
+
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
@@ -33,9 +32,19 @@ export default function Home() {
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar style={{ backgroundColor: "black" }}>
-          <LuggageIcon sx={{ mr: 2 }} />
+          <div
+            style={{
+              backgroundImage:
+                "url('https://cdn-icons-png.flaticon.com/512/2982/2982182.png')",
+              backgroundRepeat: "no-repeat no-repeat",
+              backgroundSize: "cover",
+              width: 50,
+              height: 50,
+              marginRight: 15,
+            }}
+          ></div>
           <Typography variant="h6" color="white" noWrap>
-            LOTUS RESTORENT
+            LOTUS RESTAURANT
           </Typography>
         </Toolbar>
       </AppBar>
@@ -70,7 +79,7 @@ export default function Home() {
                   color: "black",
                 }}
               >
-                LOTUS RESTORENT
+                LOTUS RESTAURANT
               </Typography>
               <Typography
                 variant="h5"
@@ -129,11 +138,10 @@ export default function Home() {
           color="text.secondary"
           component="p"
         >
-          enjoy..
+          enjoy...
         </Typography>
         <Copyright />
       </Box>
-      {/* End footer */}
     </ThemeProvider>
   );
 }
